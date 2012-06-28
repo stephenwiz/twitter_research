@@ -4,8 +4,8 @@
   <%= @results.inspect %>
   </pre>
 
-<ul>
+<ol>
   <% @results['results'].each do |r| %>
-    <li><%=r['text'] %></li>
+    <li><%= r['from_user'] %>... <%= r['text'] %></li>
     <%end%>
- </ul>
+ </ol>
