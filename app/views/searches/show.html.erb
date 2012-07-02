@@ -5,7 +5,7 @@
   </pre>
 
 <ol>
-  <% @results['results'].each do |r| %>
-    <li><%= r['from_user'] %>... <%= r['text'] %></li>
+  <% @results.each do |r| %>
+    <li><%= r.text %></li>
     <%end%>
  </ol>
