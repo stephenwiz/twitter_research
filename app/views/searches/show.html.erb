@@ -2,10 +2,12 @@
 
 <pre>
   <%= @results.inspect %>
-  </pre>
+</pre>
 
-<ol>
+ <ol>
   <% @results.each do |r| %>
-    <li><%= r.text %></li>
-    <%end%>
+    <li>
+      <%= r.text %>
+    </li>
+  <%end%>
  </ol>
