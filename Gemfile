@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem('simple_twitter', '1.0.0')
+gem('simple_twitter',
+    :git => 'https://github.com/stephenwiz/simple_twitter.git',
+    :tag => 'v1.0.0')
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem ('pg')
+gem ('devise')
 
 
 # Gems used only for assets and not required
