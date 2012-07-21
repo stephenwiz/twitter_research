@@ -4,7 +4,7 @@ class Tweet < ActiveRecord::Base
   attr_accessible(:twitter_user, :tweeted_text, :tweeted_at, :user_id)
 
   validates(:twitter_user, :presence => true)
-#  validates(:tweeted_text, :presence => true)
+  #  validates(:tweeted_text, :presence => true)
   validates(:tweeted_at, :presence => true)
 
 
@@ -25,9 +25,26 @@ class Tweet < ActiveRecord::Base
     catmatch = text & titles
     suggestion = catmatch.map(&:capitalize)
     suggestion.sort.join(', ')
+  end
+
+  def categories_as_string
+    # returns a comma separated string of the current category titles.
+    categories.map(&:title).sort.join(', ')
 
   end
 
+  def categories_as_string= (new_categories)
+    # given a comma separated string of category titles, reset the
+    # categories for this tweet to the categories in the string.
+    categories.clear
 
+    new_categories.split(/\s*,\s*/).each do |title|
+      cat = Category.where('LOWER(title) = ?', title.downcase).first
+      categories << cat if cat
+
+    end
   end
+
+end
+
 

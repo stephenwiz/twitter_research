@@ -7,6 +7,7 @@ class SearchesController < ApplicationController
   end
 
   def show
+    debugger
     srch = SimpleTwitter::Search.new
     srch.results_per_page = params[:rpp]
     @results =  srch.search(params[:q])
