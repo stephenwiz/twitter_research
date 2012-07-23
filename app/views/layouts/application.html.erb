@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+  <ul>
+    <li> <%= link_to('Search', searches_url) %> </li>
+    <li> <%= link_to('My Saved Tweets', tweets_url) %> </li>
+</ul>
+
+  <div id="content">
 
 <%= yield %>
 
