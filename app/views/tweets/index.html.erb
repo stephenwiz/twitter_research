@@ -1,7 +1,10 @@
 <ul>
-  <% @tweets.each do |tweet|%>
+  <% @tweets.each do |tweet| %>
     <li>
       [ID: <%= tweet.id %>]
-      <%= tweet.twitter_user%> said <%= tweet.tweeted_text %>
+      <%= tweet.twitter_user %> said <%= tweet.tweeted_text %>
+      <%= link_to('View', tweet_url(tweet)) %>
     </li>
-  <% end %>
+
+<% end %>
+</ul>
