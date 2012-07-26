@@ -1,3 +1,4 @@
+<h1>views/tweets/show.html.erb</h1>
 <div> class="tweet"
   <span>
     On <%= @tweet.tweeted_at %>, <%= @tweet.twitter_user %> said:
@@ -6,7 +7,7 @@
   <p><%= @tweet.tweeted_text %></p>
 </div>
 
-div class="notes">
+<div class="notes">
 <h2>My Notes:</h2>
 <span>
   <%= link_to('Create New Note', new_tweet_note_url(@tweet)) %>
