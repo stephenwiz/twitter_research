@@ -1,0 +1,6 @@
+<h1>views/categories/show.html.erb</h1>
+<h1>Tweets in <%= @category.title %></h1>
+<ul>
+  <%= render(partial: 'tweets/tweet', collection: @category.tweets) %>
+</ul>
+
