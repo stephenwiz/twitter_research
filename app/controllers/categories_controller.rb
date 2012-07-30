@@ -22,19 +22,20 @@ class CategoriesController < ApplicationController
   # actually create the category.
   def create
     @category = Category.create(params[:category])
+    respond_with(@category, location: categories_url)
+  end
+
+  # Form to edit a category
+  def edit
+    @category = Category.find(params[:id])
     respond_with(@category)
   end
 
-  # Form to create a category
-  def edit
-    @category = Category.find(params[:id])
-  end
-
-  # Update the category in the database.
+  # Update the category after the edit form was submitted
   def update
     @category = Category.find(params[:id])
     @category.update_attributes(params[:category])
-    respond_with(@category)
+    respond_with(@category, location: categories_url)
   end
 
   # Delete categories that don't have any tweets

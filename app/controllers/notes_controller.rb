@@ -1,58 +1,54 @@
 class NotesController < ApplicationController
 
-  before_filter(:fetch_tweet)
-  before_filter(:fetch_note, except: [:index, :new, :create])
+  before_filter(:fetch_tweet_and_maybe_note)
 
 
 
-  def index
-    @tweets = @tweet.notes.order('created_at desc')
-    respond_with(@notes, location: tweet_url(@tweet))
+def index
+    @notes = @tweet.notes.order('created_at desc')
+    respond_with([@tweet, @notes], location: tweet_url(@tweet))
   end
 
-#  show a single note
+  ##############################################################################
   def show
-    respond_with(@note)
+    respond_with([@tweet, @note], location: tweet_url(@tweet))
   end
 
-  #  new show a form to create a new note
+  ##############################################################################
   def new
     @note = @tweet.notes.build
-    respond_with(@note, location:tweet_url(@tweet))
+    respond_with([@tweet, @note])
   end
 
-  #  create actually create the note
+  ##############################################################################
   def create
     @note = @tweet.notes.create(params[:note])
-    respond_with(@note)
+    respond_with([@tweet, @note], location: tweet_url(@tweet))
   end
 
-  #  edit show a form to edit an existing note
+  ##############################################################################
   def edit
-    respond_with(@note)
+    respond_with([@tweet, @note])
   end
 
-  #  update actually update the note
+  ##############################################################################
   def update
     @note.update_attributes(params[:note])
-    respond_with(@note)
+    respond_with([@tweet, @note])
   end
 
-  #  destroy delete the note
+  ##############################################################################
   def destroy
     @note.destroy
-    respond_with(@note)
+    respond_with([@tweet, @note])
   end
 
+  ##############################################################################
   private
 
-  def fetch_tweet
+  def fetch_tweet_and_maybe_note
     @tweet = current_user.tweets.find(params[:tweet_id])
-  end
-
-  def fetch_note
-    @note = @tweet.notes.find(params[:id])
-
+    @note = @tweet.notes.find(params[:id]) if params[:id]
   end
 
 end
